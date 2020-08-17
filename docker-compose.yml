@@ -1,5 +1,7 @@
 version: '3'
+
 services:
+
   web:
     container_name: web
     build:
@@ -9,12 +11,12 @@ services:
     links:
       - php
     volumes:
-      - ./app/src:/usr/app/nginx/html
+      - ./src:/var/www
 
   php:
     container_name: php
     build:
-      context: ./php-fpm
+      context: ./php
     command: php-fpm -F
     volumes:
-      - ./app/src:/usr/app/nginx/html
+      - ./src:/var/www
