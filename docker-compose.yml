@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   web:
     container_name: web
     build:
@@ -11,7 +10,7 @@ services:
     links:
       - php
     volumes:
-      - ./src:/var/www
+      - ./src/:/var/www/
 
   php:
     container_name: php
@@ -19,4 +18,4 @@ services:
       context: ./php
     command: php-fpm -F
     volumes:
-      - ./src:/var/www
+      - ./src/:/var/www/
