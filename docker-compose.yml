@@ -1,21 +1,22 @@
 version: '3'
 
 services:
-  web:
-    container_name: web
+  nginx-scraping:
+    container_name: nginx-scraping
     build:
       context: ./web
     ports:
-      - "8080:80"
+      - "8500:80"
     links:
-      - php
+      - scraping
     volumes:
       - ./src/:/var/www/
 
-  php:
-    container_name: php
+  scraping:
+    container_name: scraping
     build:
       context: ./php
     command: php-fpm -F
     volumes:
       - ./src/:/var/www/
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
