@@ -11,7 +11,17 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 mb_internal_encoding("UTF-8");
 
-echo "hello";
+require_once("./phpQuery-onefile.php");
+$html = file_get_contents("https://ja.wikipedia.org/wiki/%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0");
+$dom = phpQuery::newDocument($html);
+
+$h1 = $dom->find("h1")->text();
+echo $h1 . '<br/>';
+
+$title = $dom->find("title")->text();
+echo $title . '<br/>';
+
+
 ?>
 </body>
 </html>
